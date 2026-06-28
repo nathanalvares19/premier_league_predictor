@@ -2,8 +2,10 @@
 
 ## Dataset
 
-- [Kaggle Premier League Data](https://www.kaggle.com/datasets/evangower/premier-league-matches-19922022?utm_source=quantifai.beehiiv.com&utm_medium=newsletter&utm_campaign=your-first-real-dataset)
+- [Premier League Data for 2020-21 and 2021-22 seasons](https://github.com/dataquestio/project-walkthroughs/tree/master/football_matches)
 
 ## References
 
 - [Mariana Antaya](https://www.youtube.com/@mar_antaya)
+- [Google Developer Course](https://developers.google.com/machine-learning)
+- [Dataquest tutorial](https://www.youtube.com/watch?v=0irmDBWLrco&list=PL6LwiUHlxWj25HYzj3wbjyuU_cn0G57Ia)
