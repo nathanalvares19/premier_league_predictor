@@ -1,4 +1,5 @@
 # Premier League Predictor Model
+A Random Forest Classifier Model to predict the outcome of Premier League matches, trained on the 2020-21 and 2021-22 seasons
 
 ## Dataset
 
