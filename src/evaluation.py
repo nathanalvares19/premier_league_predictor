@@ -1,16 +1,33 @@
 # evaluate classification models
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    ConfusionMatrixDisplay,
+)
+import matplotlib.pyplot as plt
 
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
+def evaluate(model, X_valid_encoded, y_valid_encoded, predictions):
+    predictions = model.predict(X_valid_encoded)
 
-def evaluate(y_valid_encoded, predictions):
     print(f"Accuracy: {accuracy_score(y_valid_encoded, predictions):.5f}")
+
     print(
-        f"Precision: {precision_score(y_valid_encoded, predictions, average='macro', zero_division=0):.5f}"
+        classification_report(
+            y_valid_encoded,
+            predictions,
+            labels=[0, 1, 2],
+            target_names=["Win", "Loss", "Draw"],
+            zero_division=0,
+        )
     )
-    print(
-        f"Recall: {recall_score(y_valid_encoded, predictions, average='macro', zero_division=0):.5f}"
+
+    ConfusionMatrixDisplay.from_predictions(
+        y_valid_encoded,
+        predictions,
+        labels=[0, 1, 2],
+        display_labels=["Win", "Loss", "Draw"],
+        cmap="Blues",
     )
-    print(
-        f"F1: {f1_score(y_valid_encoded, predictions, average='macro', zero_division=0):.5f}"
-    )
+
+    plt.show()
