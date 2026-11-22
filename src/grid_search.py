@@ -19,6 +19,9 @@ def create_folds(matches, X_train_raw):
 # model dependent param grid
 def create_param_grid(model_name):
     grids = {
+        "logreg": {
+            "C": [0.01, 0.1, 1.0, 10.0, 100.0],
+        },
         "forest": {
             "n_estimators": [100, 200],
             "max_depth": [10, 20, None],
@@ -44,7 +47,8 @@ def run_gs(pipeline, matches, X_train_raw):
     model_name = pipeline.steps[-1][0]
     param_grid = create_param_grid(model_name)
 
-    pipeline.set_params(**{f"{model_name}__n_jobs": 1})
+    if model_name in {"forest", "xgb"}:
+        pipeline.set_params(**{f"{model_name}__n_jobs": 1})
 
     grid_search = GridSearchCV(
         estimator=pipeline,

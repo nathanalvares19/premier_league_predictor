@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import clone
 from sklearn.pipeline import Pipeline
 from xgboost import XGBClassifier
+from sklearn.linear_model import LogisticRegression
 
 # column names
 categorical_cols = ["team", "opponent", "venue"]
@@ -24,6 +25,14 @@ preprocessor = ColumnTransformer(
             SimpleImputer(strategy="median"),
             numeric_cols,
         ),
+    ]
+)
+
+# logistic regression pipeline
+logreg_pipeline = Pipeline(
+    [
+        ("preprocessor", clone(preprocessor)),
+        ("logreg", LogisticRegression(max_iter=1000)),
     ]
 )
 
