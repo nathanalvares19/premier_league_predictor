@@ -7,10 +7,11 @@ from sklearn.base import clone
 from sklearn.pipeline import Pipeline
 from xgboost import XGBClassifier
 from sklearn.linear_model import LogisticRegression
+from src import stats
 
 # column names
-categorical_cols = ["team", "opponent", "venue"]
-numeric_cols = ["rolling_gf", "rolling_ga", "rolling_xg", "rolling_xga"]
+categorical_cols = ["home", "away"]
+numeric_cols = [f"{side}_rolling_{s}" for side in ["home", "away"] for s in stats.stats]
 
 # preprocessor for encoding and null value handling
 preprocessor = ColumnTransformer(
